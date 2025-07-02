@@ -139,7 +139,7 @@ class AddNewCardBloc {
       CreateCustomerTokenResponse addNewCardResponse = await _customerRepository
           .createCustomerToken(addNewCardRequest, appToken);
       if (kDebugMode) {
-        print("ADD NEW CARD RESPONSE: $addNewCardResponse");
+        print("ADD NEW CARD RESPONSE: ${jsonEncode(addNewCardResponse.toJson())}");
       }
       if (addNewCardResponse.status == 200) {
         addNewCardSink.add(Response.completed(addNewCardResponse.data));

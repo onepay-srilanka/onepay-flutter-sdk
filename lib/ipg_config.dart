@@ -7,7 +7,7 @@ class IpgConfig{
     if (kDebugMode){
       return "https://onepay-subscription-uat-bnf3bvbybtdaajay.centralindia-01.azurewebsites.net/v3/";
     }else{
-      return "";
+      return "https://onepay-subscription-live-bnf3bvbybtdaajay.centralindia-01.azurewebsites.net/v3/";
     }
   }
 

@@ -227,9 +227,10 @@ class _AddNewCardBottomSheetState extends State<AddNewCardBottomSheet> {
                 borderRadius: 8,
                 fontSize: 14,
                 height: 36,
-                onPressed: () => {_bloc.validateForm()},
+                onPressed: _bloc.isLoading ? null : () => {_bloc.validateForm()},
                 circularProgressBarColor: Colors.white,
                 isLoading: _bloc.isLoading,
+
               ),
             ),
             SizedBox(height: 8),

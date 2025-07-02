@@ -19,19 +19,3 @@ void showErrorDialog(BuildContext context, List<String> errors) {
     ),
   );
 }
-
-// void showMessageDialog(BuildContext context, String title, String massage) {
-//   showDialog(
-//     context: context,
-//     builder: (_) => AlertDialog(
-//       title: Text(title),
-//       content: Text(massage),
-//       actions: [
-//         TextButton(
-//           onPressed: () => Navigator.pop(context),
-//           child: Text("OK"),
-//         ),
-//       ],
-//     ),
-//   );
-// }

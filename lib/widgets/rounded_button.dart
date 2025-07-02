@@ -7,7 +7,7 @@ class RoundedButton extends ElevatedButton {
   RoundedButton({
     super.key,
     required String text,
-    required VoidCallback super.onPressed,
+    required super.onPressed,
     Color textColor = Colors.white,
     double fontSize = 16.0,
     double borderRadius = 30.0,

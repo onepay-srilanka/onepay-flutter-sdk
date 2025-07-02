@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
@@ -33,7 +34,7 @@ class ThreeDSBloc {
         ThreeDSStatusResponse statusResponse = await _customerRepository
             .get3DSStatus(cardToken, appToken);
         if (kDebugMode) {
-          print("3DS STATUS: $statusResponse");
+          print("3DS STATUS: ${jsonEncode(statusResponse.toJson())}");
         }
         if (statusResponse.status == 200) {
           if (statusResponse.data!.isAuthenticate == true) {
