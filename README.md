@@ -104,7 +104,7 @@ Only merchants registered with Spemai (Pvt) Ltd can use this plugin via provided
 
 ## 🔗 Links
 
-- [Homepage](https://github.com/spemai/ipg_flutter)
-- [Repository](https://github.com/spemai/ipg_flutter)
-- [Issue Tracker](https://github.com/spemai/ipg_flutter/issues)
-- [Documentation](https://github.com/spemai/ipg_flutter#readme)
+- [Homepage](https://github.com/onepay-srilanka/onepay-flutter-sdk)
+- [Repository](https://github.com/onepay-srilanka/onepay-flutter-sdk)
+- [Issue Tracker](https://github.com/onepay-srilanka/onepay-flutter-sdk/issues)
+- [Documentation](https://github.com/onepay-srilanka/onepay-flutter-sdk#readme)
