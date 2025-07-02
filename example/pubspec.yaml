@@ -1,0 +1,21 @@
+name: ipg_flutter_example
+description: Example app demonstrating usage of IPG Futter.
+publish_to: 'none'
+version: 1.0.0
+
+environment:
+  sdk: '>=3.1.5 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  ipg_flutter:
+    path: ../
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
