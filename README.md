@@ -21,6 +21,7 @@ dependencies:
 
 ## Usage
 
+```dart
 var ipg = Ipg.init(
 appToken: 'your_token',
 appId: 'your_app_id',
@@ -50,7 +51,7 @@ print("Customers: $customerList");
 ipg.paymentStatusCallback = (status, errorMessage ) {
 print("Payment Status: $status - $message");
 };
-
+```
 ---
 
 ## 📦 Example
