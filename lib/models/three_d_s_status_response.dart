@@ -1,14 +1,13 @@
 class ThreeDSStatusResponse {
-  ThreeDSStatusResponse({
-      this.status, 
-      this.message, 
-      this.data,});
+  ThreeDSStatusResponse({this.status, this.message, this.data});
 
   ThreeDSStatusResponse.fromJson(dynamic json) {
     status = json['status'];
     message = json['message'];
-    data = json['data'] != null ? ThreeDSStatusData.fromJson(json['data']) : null;
+    data =
+        json['data'] != null ? ThreeDSStatusData.fromJson(json['data']) : null;
   }
+
   int? status;
   String? message;
   ThreeDSStatusData? data;
@@ -22,15 +21,15 @@ class ThreeDSStatusResponse {
     }
     return map;
   }
-
 }
 
 class ThreeDSStatusData {
   ThreeDSStatusData({
-      this.isLoading, 
-      this.updateDatetime, 
-      this.isPay, 
-      this.isAuthenticate,});
+    this.isLoading,
+    this.updateDatetime,
+    this.isPay,
+    this.isAuthenticate,
+  });
 
   ThreeDSStatusData.fromJson(dynamic json) {
     isLoading = json['is_loading'];
@@ -38,6 +37,7 @@ class ThreeDSStatusData {
     isPay = json['is_pay'];
     isAuthenticate = json['is_authenticate'];
   }
+
   bool? isLoading;
   String? updateDatetime;
   bool? isPay;
@@ -51,5 +51,4 @@ class ThreeDSStatusData {
     map['is_authenticate'] = isAuthenticate;
     return map;
   }
-
 }

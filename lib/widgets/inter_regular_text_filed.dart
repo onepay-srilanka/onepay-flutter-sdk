@@ -72,7 +72,12 @@ class _InterRegularTextFieldInputState
         counterText: "",
         hintStyle: TextStyle(
           color:
-              widget.textHintColor?.withOpacity(0.6) ??
+              widget.textHintColor?.withValues(
+                red: 1,
+                green: 1,
+                blue: 1,
+                alpha: 0.6,
+              ) ??
               widget.textColor, // Hint text color
           fontSize: widget.fontSize,
           fontWeight: FontWeight.w400,

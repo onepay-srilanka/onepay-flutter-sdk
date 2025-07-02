@@ -27,8 +27,7 @@ class ThreeDSBloc {
     _customerRepository = CustomerRepository();
   }
 
- checkStatus(String cardToken, String appToken) async {
-
+  checkStatus(String cardToken, String appToken) async {
     _pollingTimer = Timer.periodic(Duration(seconds: 3), (timer) async {
       try {
         ThreeDSStatusResponse statusResponse = await _customerRepository
@@ -52,7 +51,9 @@ class ThreeDSBloc {
         if (kDebugMode) {
           print("3DS STATUS ERROR: ${IPGErrorMessages.invalidAppToken}");
         }
-        check3DSStatusSink.add(Response.error(IPGErrorMessages.invalidAppToken));
+        check3DSStatusSink.add(
+          Response.error(IPGErrorMessages.invalidAppToken),
+        );
       } catch (e) {
         timer.cancel();
         check3DSStatusSink.add(Response.error(e.toString()));

@@ -18,4 +18,3 @@ class Response<T> {
     return "Status : $status \n Message : $message \n Data : $data";
   }
 }
-

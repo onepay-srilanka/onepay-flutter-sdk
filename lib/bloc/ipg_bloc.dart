@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 
 import '../models/customer_list_response.dart';
-import '../models/three_d_s_status_response.dart';
 import '../networking/response.dart';
 import '../repository/customer_repository.dart';
 import '../resources/strings.dart';
@@ -26,7 +25,6 @@ class IPGBloc {
   }
 
   getCustomers(String appToken) async {
-
     try {
       CustomerListResponse customerListResponse = await _customerRepository
           .getCustomers(appToken);
@@ -34,12 +32,12 @@ class IPGBloc {
         print("CUSTOMER LIST: $customerListResponse");
       }
       if (customerListResponse.status == 200) {
-
-          customerListSink.add(Response.completed(customerListResponse.data!));
-
+        customerListSink.add(Response.completed(customerListResponse.data!));
       } else {
         if (kDebugMode) {
-          print("CUSTOMER LIST FAILED MESSAGE: ${customerListResponse.message}");
+          print(
+            "CUSTOMER LIST FAILED MESSAGE: ${customerListResponse.message}",
+          );
         }
         customerListSink.add(Response.error(customerListResponse.message));
       }
