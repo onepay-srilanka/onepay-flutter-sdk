@@ -36,20 +36,20 @@ ipg.addNewCard(context);
 
 // Callback when card add flow completes
 ipg.addCardEventCallback = (status, errorMessage) {
-print("Adding card result: $status - $message");
+print("Adding card result: $status - $errorMessage");
 };
 
 // Retrieve customer list (saved cards)
 ipg.getCustomers();
 
 // Callback when customers are retrieved
-ipg.getCustomersEventCallback = (customerList, message) {
+ipg.getCustomersEventCallback = (customerList, errorMessage) {
 print("Customers: $customerList");
 };
 
 // Listen to payment status
 ipg.paymentStatusCallback = (status, errorMessage ) {
-print("Payment Status: $status - $message");
+print("Payment Status: $status - $errorMessage");
 };
 ```
 ---
