@@ -28,7 +28,7 @@ class ThreeDSBloc {
   }
 
   checkStatus(String cardToken, String appToken) async {
-    _pollingTimer = Timer.periodic(Duration(seconds: 3), (timer) async {
+    _pollingTimer = Timer.periodic(Duration(seconds: 5), (timer) async {
       try {
         ThreeDSStatusResponse statusResponse = await _customerRepository
             .get3DSStatus(cardToken, appToken);
@@ -44,7 +44,7 @@ class ThreeDSBloc {
           if (kDebugMode) {
             print("3DS STATUS FAILED MESSAGE: ${statusResponse.message}");
           }
-          check3DSStatusSink.add(Response.error(statusResponse.message));
+          check3DSStatusSink.add(Response.error(statusResponse.message, errorCode: 1));
         }
       } on UnauthorisedException {
         timer.cancel();

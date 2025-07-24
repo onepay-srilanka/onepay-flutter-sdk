@@ -1,3 +1,6 @@
+import 'package:ipg_flutter/models/customer_payment_request.dart';
+import 'package:ipg_flutter/models/customer_payment_response.dart';
+
 import '../models/create_customer_token_request.dart';
 import '../models/create_customer_token_response.dart';
 import '../models/customer_list_response.dart';
@@ -38,5 +41,17 @@ class CustomerRepository {
       appToken,
     );
     return CustomerListResponse.fromJson(response);
+  }
+
+  Future<CustomerPaymentResponse> makeCustomerPayment(
+      CustomerPaymentRequest payload,
+      String appToken,
+      ) async {
+    final response = await _authHttpClient.post(
+      "customer/payment/",
+      appToken,
+      body: payload.toJson(),
+    );
+    return CustomerPaymentResponse.fromJson(response);
   }
 }

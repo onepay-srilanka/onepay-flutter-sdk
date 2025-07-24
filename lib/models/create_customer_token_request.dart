@@ -8,7 +8,8 @@ class CreateCustomerTokenRequest {
       this.cardType, 
       this.cardBrand, 
       this.card, 
-      this.device,});
+      this.device,
+  this.deviceId});
 
   CreateCustomerTokenRequest.fromJson(dynamic json) {
     appId = json['app_id'];
@@ -20,6 +21,7 @@ class CreateCustomerTokenRequest {
     cardBrand = json['card_brand'];
     card = json['card'];
     device = json['device'] != null ? Device.fromJson(json['device']) : null;
+    deviceId =  json['device_id'];
   }
   String? appId;
   String? firstName;
@@ -30,6 +32,7 @@ class CreateCustomerTokenRequest {
   String? cardBrand;
   String? card;
   Device? device;
+  String? deviceId;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -41,6 +44,7 @@ class CreateCustomerTokenRequest {
     map['card_type'] = cardType;
     map['card_brand'] = cardBrand;
     map['card'] = card;
+    map['device_id'] = deviceId;
     if (device != null) {
       map['device'] = device?.toJson();
     }
@@ -51,15 +55,18 @@ class CreateCustomerTokenRequest {
 
 class Device {
   Device({
+    this.browser,
       this.browserDetails,});
 
   Device.fromJson(dynamic json) {
     browserDetails = json['browserDetails'] != null ? MainBrowserDetails.fromJson(json['browserDetails']) : null;
   }
+  String? browser;
   MainBrowserDetails? browserDetails;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
+    map['browser'] = browser;
     if (browserDetails != null) {
       map['browserDetails'] = browserDetails?.toJson();
     }
@@ -70,19 +77,15 @@ class Device {
 
 class MainBrowserDetails {
   MainBrowserDetails({
-      this.browser, 
       this.browserDetails,});
 
   MainBrowserDetails.fromJson(dynamic json) {
-    browser = json['browser'];
     browserDetails = json['browserDetails'] != null ? BrowserDetails.fromJson(json['browserDetails']) : null;
   }
-  String? browser;
   BrowserDetails? browserDetails;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['browser'] = browser;
     if (browserDetails != null) {
       map['browserDetails'] = browserDetails?.toJson();
     }

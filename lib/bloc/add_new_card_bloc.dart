@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:ipg_flutter/ipg_config.dart';
@@ -113,6 +115,7 @@ class AddNewCardBloc {
     try {
       var agent = await _getUserAgent();
       var encryptedData = _getEncryptedCardData();
+      var deviceId = await _getDeviceId() ?? "";
       var addNewCardRequest = CreateCustomerTokenRequest(
         appId: appId,
         firstName: firstName,
@@ -123,11 +126,12 @@ class AddNewCardBloc {
         cardType: cardType.type,
         cardBrand: cardType.brand,
         device: Device(
+          browser: agent,
           browserDetails: MainBrowserDetails(
-            browser: agent,
             browserDetails: BrowserDetails(),
           ),
         ),
+        deviceId: deviceId
       );
 
       if (kDebugMode) {
@@ -156,6 +160,26 @@ class AddNewCardBloc {
       if (kDebugMode) {
         print("ADD NEW CARD ERROR: ${e.toString()}");
       }
+    }
+  }
+
+  Future<String?> _getDeviceId() async {
+    final deviceInfo = DeviceInfoPlugin();
+    try {
+      if (Platform.isAndroid) {
+        AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+        return androidInfo.id; // Stable until factory reset
+      } else if (Platform.isIOS) {
+        IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+        return iosInfo.identifierForVendor; // Changes if app is uninstalled
+      } else {
+        return null; // Unsupported platform
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print('Failed to get device ID: $e');
+      }
+      return null;
     }
   }
 

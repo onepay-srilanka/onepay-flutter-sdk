@@ -6,12 +6,13 @@ class Response<T> {
   Status status;
   T? data;
   String? message;
+  int? errorCode;
 
   Response.loading(this.message) : status = Status.loading;
 
-  Response.completed(this.data) : status = Status.completed;
+  Response.completed(this.data, {this.message}) : status = Status.completed;
 
-  Response.error(this.message) : status = Status.error;
+  Response.error(this.message, {this.errorCode = 0}) : status = Status.error;
 
   @override
   String toString() {

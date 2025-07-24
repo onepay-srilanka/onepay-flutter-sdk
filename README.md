@@ -8,7 +8,7 @@
 - Three powerful callback handlers:
     - `addCardEventCallback` – card addition status
     - `getCustomersEventCallback` – returns saved cards
-    - `paymentStatusEventCallback` – returns payment results
+    - `customerPaymentEventCallback` – returns payment results
 
 
 ## Getting started
@@ -47,8 +47,12 @@ ipg.getCustomersEventCallback = (customerList, errorMessage) {
 print("Customers: $customerList");
 };
 
+// Make customer payment
+// Valid Currency codes: LKR, USD
+ipg.makeCustomerPayment(amount, currencyCode, customerCardToken);
+
 // Listen to payment status
-ipg.paymentStatusCallback = (status, errorMessage ) {
+ipg.customerPaymentEventCallback = (status, errorMessage ) {
 print("Payment Status: $status - $errorMessage");
 };
 ```
@@ -70,17 +74,35 @@ You can also view the code in the [`example/`](example) folder.
 
 ## 🧩 API Reference
 
-| Method                          | Description                              |
-|---------------------------------|------------------------------------------|
-| `Ipg.init(...)`                 | Initializes the IPG with merchant/user   |
-| `ipg.addNewCard(context)`       | Launches secure add-card flow            |
-| `ipg.getCustomers()`            | Fetches list of saved customer cards     |
-| `addCardEventCallback`          | Callback for add card result             |
-| `getCustomersEventCallback`     | Callback for saved customers             |
-| `paymentStatusCallback`         | Callback for payment completion status   |
+| Method                                                             | Description                                |
+|--------------------------------------------------------------------|--------------------------------------------|
+| `Ipg.init(...)`                                                    | Initializes the IPG with merchant/user     |
+| `ipg.addNewCard(context)`                                          | Launches secure add-card flow              |
+| `ipg.makeCustomerPayment(amount, currencyCode, customerCardToken)` | Make Customer payment using tokenized card |
+| `ipg.getCustomers()`                                               | Fetches list of saved customer cards       |
+| `addCardEventCallback`                                             | Callback for add card result               |
+| `getCustomersEventCallback`                                        | Callback for saved customers               |
+| `paymentStatusCallback`                                            | Callback for payment completion status     |
 
 ---
+## ⚠️ Special Instruction
+Make sure to use the same app environment specific card details (e.g., development or production) when adding a new card and making payments.
 
+For example, if you use a dev app with test card details when initiate IPG and add new card:
+```dart
+var ipg = Ipg.init(
+appToken: 'your_app_token',
+appId: 'your_app_id',
+);
+
+ipg.addNewCard(context)
+```
+
+then you must use the development app when initiate the IPG and test card customer token for do the payment:
+```dart
+ipg.makeCustomerPayment(amount, currencyCode, customerCardToken)
+```
+---
 ## ❓ FAQ
 
 ### Is this plugin secure?

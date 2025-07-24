@@ -28,7 +28,10 @@ class Ipg {
   }
 
   void Function(bool status, String? errorMessage)? addCardEventCallback;
-  void Function(List<Customer> customers, String? errorMessage)? getCustomersEventCallback;
+  void Function(List<Customer> customers, String? errorMessage)?
+  getCustomersEventCallback;
+  void Function(bool paymentStatus, String? errorMessage)?
+  customerPaymentEventCallback;
 
   void addNewCard(BuildContext context) {
     showModalBottomSheet(
@@ -66,9 +69,8 @@ class Ipg {
   }
 
   getCustomers() async {
-
     _bloc.customerListStream.listen((data) {
-      switch (data.status){
+      switch (data.status) {
         case Status.loading:
           break;
         case Status.completed:
@@ -80,6 +82,23 @@ class Ipg {
       }
     });
     _bloc.getCustomers(appToken);
+  }
+
+  makeCustomerPayment(String amount, String currency, String customerCardToken) async {
+
+    _bloc.customerPaymentResponseStream.listen((data) {
+      switch (data.status) {
+        case Status.loading:
+          break;
+        case Status.completed:
+          customerPaymentEventCallback?.call(data.data!.paymentStatus!, data.message);
+          break;
+        case Status.error:
+          customerPaymentEventCallback?.call(false, data.message);
+          break;
+      }
+    });
+    _bloc.makeCustomerPayment(amount, currency, customerCardToken, appId, appToken);
   }
 
   void dispose() {

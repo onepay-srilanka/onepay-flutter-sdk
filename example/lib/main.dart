@@ -45,6 +45,10 @@ class _IpgDemoScreenState extends State<IpgDemoScreen> {
     ipg.getCustomersEventCallback = (customers, message) {
       debugPrint("GET CUSTOMERS CALLBACK: $customers");
     };
+
+    ipg.customerPaymentEventCallback = (paymentStatus, message){
+      debugPrint("CUSTOMERS PAYMENT CALLBACK: STATUS $paymentStatus, MESSAGE: $message");
+    };
   }
 
   @override
@@ -63,6 +67,12 @@ class _IpgDemoScreenState extends State<IpgDemoScreen> {
             ElevatedButton(
               onPressed: () => ipg.getCustomers(),
               child: const Text("Get Customers"),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              // Currently LKR and USD are supported
+              onPressed: () => ipg.makeCustomerPayment("100.00", "LKR", "tok_1e3a3bcd"),
+              child: const Text("Customer Payment"),
             ),
           ],
         ),

@@ -92,6 +92,10 @@ class _ThreeDSecureScreenState extends State<ThreeDSecureScreen> {
           Navigator.pop(context, data.data?.isAuthenticate);
           break;
         case Status.error:
+
+          if (data.errorCode == 1) {
+            break;
+          }
           Navigator.pop(context, data.message);
           break;
       }

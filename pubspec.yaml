@@ -15,6 +15,7 @@ dependencies:
   basic_utils: ^5.6.1
   pointycastle: ^3.7.3
   convert: ^3.1.1
+  device_info_plus: ^10.0.0
 
 dev_dependencies:
   flutter_test:
