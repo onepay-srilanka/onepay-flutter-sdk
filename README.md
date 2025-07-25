@@ -86,23 +86,27 @@ You can also view the code in the [`example/`](example) folder.
 
 ---
 ## ⚠️ Special Instruction
-Make sure to use the same app environment specific card details (e.g., development or production) when adding a new card and making payments.
 
-For example, if you use a dev app with test card details when initiate IPG and add new card:
+> Make sure to **use the same `environment appId`** (dev, staging, or production) when adding cards and when making payments.
+
+For example, if you use your **development `app_id`** when calling:
+
 ```dart
 var ipg = Ipg.init(
-appToken: 'your_app_token',
+appToken: 'your_token',
 appId: 'your_app_id',
 );
-
-ipg.addNewCard(context)
+ipg.addNewCard(context);
 ```
 
-then you must use the development app when initiate the IPG and test card customer token for do the payment:
+then you **must** also use the same **environment `app_id` with `customer_token`** when calling:
+
 ```dart
-ipg.makeCustomerPayment(amount, currencyCode, customerCardToken)
+ipg.makeCustomerPayment(amount, currencyCode, customerCardToken);
 ```
 ---
+
+If you instead use a different environment (e.g., dev `app_id` to add card, then prod `app_id` to pay), Spemai backend will **reject the request** because the card was added under a different environment.---
 ## ❓ FAQ
 
 ### Is this plugin secure?
