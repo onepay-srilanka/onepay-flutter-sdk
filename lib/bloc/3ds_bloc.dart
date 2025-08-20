@@ -36,9 +36,16 @@ class ThreeDSBloc {
           print("3DS STATUS: ${jsonEncode(statusResponse.toJson())}");
         }
         if (statusResponse.status == 200) {
-          if (statusResponse.data!.isAuthenticate == true) {
+          if (statusResponse.data!.isLoading == false && statusResponse.data!.isAuthenticate == true) {
             timer.cancel();
             check3DSStatusSink.add(Response.completed(statusResponse.data!));
+          }else if (statusResponse.data!.isLoading == false && statusResponse.data!.isAuthenticate == false){
+
+            if (kDebugMode) {
+              print("3DS STATUS FAILED MESSAGE: ${statusResponse.message}");
+            }
+            timer.cancel();
+            check3DSStatusSink.add(Response.error(statusResponse.message));
           }
         } else {
           if (kDebugMode) {

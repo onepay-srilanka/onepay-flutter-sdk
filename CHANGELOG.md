@@ -10,7 +10,10 @@
 - Add card and retrieve saved cards
 - Callback support for card addition, customer fetch, and payments
 
-```markdown
 ## [1.1.0] - 2025-07-25
 
 - Payment support for saved customers
+
+## [1.1.1] - 2025-08-20
+
+- Performance improvement
