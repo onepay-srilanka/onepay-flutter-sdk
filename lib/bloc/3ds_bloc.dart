@@ -36,11 +36,24 @@ class ThreeDSBloc {
           print("3DS STATUS: ${jsonEncode(statusResponse.toJson())}");
         }
         if (statusResponse.status == 200) {
-          if (statusResponse.data!.isLoading == false && statusResponse.data!.isAuthenticate == true) {
-            timer.cancel();
-            check3DSStatusSink.add(Response.completed(statusResponse.data!));
-          }else if (statusResponse.data!.isLoading == false && statusResponse.data!.isAuthenticate == false){
-
+          if (statusResponse.data!.isAuthenticateStart = true) {
+            if (statusResponse.data!.isLoading == false &&
+                statusResponse.data!.isAuthenticate == true &&
+                statusResponse.data!.isPay == true) {
+              if (kDebugMode) {
+                print("3DS STATUS COMPLETED MESSAGE: ${statusResponse.message}");
+              }
+              timer.cancel();
+              check3DSStatusSink.add(Response.completed(statusResponse.data!));
+            } else if (statusResponse.data!.isLoading == false &&
+                statusResponse.data!.isAuthenticate == false) {
+              if (kDebugMode) {
+                print("3DS STATUS FAILED MESSAGE: ${statusResponse.message}");
+              }
+              timer.cancel();
+              check3DSStatusSink.add(Response.error(statusResponse.message));
+            }
+          } else {
             if (kDebugMode) {
               print("3DS STATUS FAILED MESSAGE: ${statusResponse.message}");
             }
@@ -51,7 +64,9 @@ class ThreeDSBloc {
           if (kDebugMode) {
             print("3DS STATUS FAILED MESSAGE: ${statusResponse.message}");
           }
-          check3DSStatusSink.add(Response.error(statusResponse.message, errorCode: 1));
+          check3DSStatusSink.add(
+            Response.error(statusResponse.message, errorCode: 1),
+          );
         }
       } on UnauthorisedException {
         timer.cancel();

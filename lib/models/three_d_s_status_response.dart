@@ -29,6 +29,7 @@ class ThreeDSStatusData {
     this.updateDatetime,
     this.isPay,
     this.isAuthenticate,
+    this.isAuthenticateStart,
   });
 
   ThreeDSStatusData.fromJson(dynamic json) {
@@ -36,8 +37,10 @@ class ThreeDSStatusData {
     updateDatetime = json['update_datetime'];
     isPay = json['is_pay'];
     isAuthenticate = json['is_authenticate'];
+    isAuthenticateStart = json['is_authenticate_start'];
   }
 
+  bool? isAuthenticateStart;
   bool? isLoading;
   String? updateDatetime;
   bool? isPay;
@@ -49,6 +52,7 @@ class ThreeDSStatusData {
     map['update_datetime'] = updateDatetime;
     map['is_pay'] = isPay;
     map['is_authenticate'] = isAuthenticate;
+    map['is_authenticate_start'] = isAuthenticateStart;
     return map;
   }
 }
