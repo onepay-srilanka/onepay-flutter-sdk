@@ -17,3 +17,7 @@
 ## [1.1.1] - 2025-08-20
 
 - Performance improvement
+
+## [1.1.2] - 2025-08-29
+
+- Performance improvement and enhancement

@@ -20,4 +20,7 @@ class IPGErrorMessages {
   static const noInternetConnection = "No Internet connection";
   static const invalidAppToken = "Invalid app token";
   static const alreadyTokenizedCard = "You've been already tokenized your card";
+  static const authStartFailed = "Unable to initiate authentication process. The request could not be completed.";
+  static const authFailed = "Authentication failed";
+  static const authIncompleteProcess = "Authentication failed. Incomplete process";
 }

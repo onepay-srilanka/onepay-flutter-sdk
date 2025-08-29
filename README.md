@@ -16,7 +16,7 @@
 Add the dependency in your `pubspec.yaml`:
 ```yaml
 dependencies:
-  ipg_flutter: ^1.0.0
+  ipg_flutter: ^1.1.2
 ```
 
 ## Usage

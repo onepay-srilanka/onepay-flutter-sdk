@@ -36,26 +36,35 @@ class ThreeDSBloc {
           print("3DS STATUS: ${jsonEncode(statusResponse.toJson())}");
         }
         if (statusResponse.status == 200) {
-          if (statusResponse.data!.isAuthenticateStart = true) {
-            if (statusResponse.data!.isLoading == false &&
-                statusResponse.data!.isAuthenticate == true &&
-                statusResponse.data!.isPay == true) {
-              if (kDebugMode) {
-                print("3DS STATUS COMPLETED MESSAGE: ${statusResponse.message}");
-              }
-              timer.cancel();
-              check3DSStatusSink.add(Response.completed(statusResponse.data!));
-            } else if (statusResponse.data!.isLoading == false &&
-                statusResponse.data!.isAuthenticate == false) {
-              if (kDebugMode) {
-                print("3DS STATUS FAILED MESSAGE: ${statusResponse.message}");
-              }
-              timer.cancel();
-              check3DSStatusSink.add(Response.error(statusResponse.message));
-            }
-          } else {
+          if (statusResponse.data!.isAuthenticateStart == false) {
             if (kDebugMode) {
-              print("3DS STATUS FAILED MESSAGE: ${statusResponse.message}");
+              print("3DS STATUS AUTH START FAILED: ${IPGErrorMessages
+                  .authStartFailed}");
+            }
+            timer.cancel();
+            check3DSStatusSink.add(Response.error(statusResponse.message));
+          }
+          if (statusResponse.data!.isLoading == false &&
+              statusResponse.data!.isAuthenticate == true &&
+              statusResponse.data!.isPay == true) {
+            if (kDebugMode) {
+              print("3DS STATUS COMPLETED MESSAGE: ${statusResponse.message}");
+            }
+            timer.cancel();
+            check3DSStatusSink.add(Response.completed(statusResponse.data!));
+          } else if (statusResponse.data!.isLoading == false &&
+              statusResponse.data!.isAuthenticate == true) {
+            if (kDebugMode) {
+              print("3DS STATUS AUTH FAILED MESSAGE: ${IPGErrorMessages
+                  .authIncompleteProcess}");
+            }
+            timer.cancel();
+            check3DSStatusSink.add(Response.error(statusResponse.message));
+          } else if (statusResponse.data!.isLoading == false &&
+              statusResponse.data!.isAuthenticate == false) {
+            if (kDebugMode) {
+              print("3DS STATUS AUTH FAILED MESSAGE: ${IPGErrorMessages
+                  .authFailed}");
             }
             timer.cancel();
             check3DSStatusSink.add(Response.error(statusResponse.message));
