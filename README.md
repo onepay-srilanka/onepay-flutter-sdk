@@ -16,7 +16,7 @@
 Add the dependency in your `pubspec.yaml`:
 ```yaml
 dependencies:
-  ipg_flutter: ^1.1.2
+  ipg_flutter: ^1.1.3
 ```
 
 ## Usage
@@ -57,7 +57,14 @@ print("Payment Status: $status - $errorMessage");
 };
 ```
 ---
+## Android Setup
 
+Since this package communicates with the internet, make sure you have added the following permission in your **`AndroidManifest.xml`** file:
+
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
+```
+---
 ## 📦 Example
 
 Clone the repo and run the example:

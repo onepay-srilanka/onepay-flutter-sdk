@@ -2,17 +2,7 @@ import 'package:flutter/foundation.dart';
 
 class IpgConfig{
 
-  static String get baseUrl {
-
-    if (kDebugMode){
-      // return "https://onepay-subscription-live-ftbwggf2frgqfza6.centralindia-01.azurewebsites.net/v3/";
-
-      return "https://onepay-subscription-uat-bnf3bvbybtdaajay.centralindia-01.azurewebsites.net/v3/";
-      // return "http://127.0.0.1:8001/v3/";
-    }else{
-      return "https://onepay-subscription-live-ftbwggf2frgqfza6.centralindia-01.azurewebsites.net/v3/";
-    }
-  }
+  static String baseUrl = "https://onepay-subscription-live-ftbwggf2frgqfza6.centralindia-01.azurewebsites.net/v3/";
 
   static const String publicKeyPem = """
 -----BEGIN PUBLIC KEY-----

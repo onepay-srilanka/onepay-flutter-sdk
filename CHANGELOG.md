@@ -21,3 +21,7 @@
 ## [1.1.2] - 2025-08-29
 
 - Performance improvement and enhancement
+
+## [1.1.3] - 2025-09-01
+
+- Add missing Android instrction to Readme.md
