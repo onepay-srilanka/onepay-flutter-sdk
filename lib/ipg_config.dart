@@ -1,8 +1,8 @@
-import 'package:flutter/foundation.dart';
 
-class IpgConfig{
 
-  static String baseUrl = "https://onepay-subscription-live-ftbwggf2frgqfza6.centralindia-01.azurewebsites.net/v3/";
+class IpgConfig {
+  static String baseUrl =
+      "https://onepay-subscription-live-ftbwggf2frgqfza6.centralindia-01.azurewebsites.net/v3/";
 
   static const String publicKeyPem = """
 -----BEGIN PUBLIC KEY-----
